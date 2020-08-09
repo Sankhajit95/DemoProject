@@ -8,6 +8,8 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,15 +17,15 @@ import javax.persistence.Id;
 @Setter
 public class Employee {
 
-    @Id
-    private int empId;
-    private String empName;
+	@ApiModelProperty(notes = "Id of employee")
+	@Id
+	private int empId;
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "empId=" + empId +
-                ", empName='" + empName + '\'' +
-                '}';
-    }
+	@ApiModelProperty(notes = "name of employee")
+	private String empName;
+
+	@Override
+	public String toString() {
+		return "Employee{" + "empId=" + empId + ", empName='" + empName + '\'' + '}';
+	}
 }
