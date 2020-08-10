@@ -31,10 +31,10 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
 
-   
+  
     @ApiOperation(value = "For addding new employee")
     @PostMapping()
-    public String addEmployeeDetails( @RequestBody Employee employee) throws EmployeeAlreadyPresentException {
+    public String addEmployeeDetails(@Valid @RequestBody Employee employee) throws EmployeeAlreadyPresentException {
         return employeeService.saveEmployeeDetails(employee);
     }
 
@@ -53,7 +53,7 @@ public class EmployeeController {
     
     @ApiOperation(value = "For editing employee details")
     @PutMapping
-    public String updateEmployeeDetails( @RequestBody Employee employee) throws NoEmployeePresentException {
+    public String updateEmployeeDetails(@Valid @RequestBody Employee employee) throws NoEmployeePresentException {
         return employeeService.updateEmployeeDetails(employee);
     }
 
