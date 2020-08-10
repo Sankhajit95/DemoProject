@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,6 +31,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Optional<Employee> getEmployeeDetails(Integer empId) {
         return employeeDao.findById(empId);
+    }
+    
+    @Override
+    public List<Employee> getEmployeeDetailsList() {
+        return employeeDao.findAll();
     }
 
     @Override
