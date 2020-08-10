@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -23,9 +25,15 @@ public class Employee {
 
 	@ApiModelProperty(notes = "name of employee")
 	private String empName;
+	
+	private String email;
+	
+	private String password;
+	
+	private double salary;
 
 	@Override
 	public String toString() {
-		return "Employee{" + "empId=" + empId + ", empName='" + empName + '\'' + '}';
+		return "Employee{" + "empId=" + empId + ", empName='" + empName + '\'' +  '}';
 	}
 }

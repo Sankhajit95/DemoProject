@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 @RestController
 @CrossOrigin
 
@@ -32,7 +34,7 @@ public class EmployeeController {
    
     @ApiOperation(value = "For addding new employee")
     @PostMapping()
-    public String addEmployeeDetails(@RequestBody Employee employee) throws EmployeeAlreadyPresentException {
+    public String addEmployeeDetails( @RequestBody Employee employee) throws EmployeeAlreadyPresentException {
         return employeeService.saveEmployeeDetails(employee);
     }
 
@@ -51,7 +53,7 @@ public class EmployeeController {
     
     @ApiOperation(value = "For editing employee details")
     @PutMapping
-    public String updateEmployeeDetails(@RequestBody Employee employee) throws NoEmployeePresentException {
+    public String updateEmployeeDetails( @RequestBody Employee employee) throws NoEmployeePresentException {
         return employeeService.updateEmployeeDetails(employee);
     }
 
