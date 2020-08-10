@@ -40,7 +40,6 @@ public class Employee {
 	private String password;
 	
 	@NotNull
-	@Size(min = 20000)
 	private double salary;
 
 	public int getEmpId() {
