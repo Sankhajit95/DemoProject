@@ -65,9 +65,9 @@ public class EmployeeController {
         }
     }
   
-    @ApiOperation(value = "For addding new employee")
-    @PostMapping()
-    public String addEmployeeDetails(@Valid @RequestBody Employee employee) throws EmployeeAlreadyPresentException {
+     @ApiOperation(value = "For addding new employee")
+    @PostMapping("/save")
+    public String addEmployeeDetails( @RequestBody EmployeeDTO employee) throws EmployeeAlreadyPresentException {
         return employeeService.saveEmployeeDetails(employee);
     }
 
