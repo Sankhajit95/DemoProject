@@ -16,7 +16,7 @@ public interface EmployeeService {
     
     List<Employee> getEmployeeDetailsList();
 
-    String updateEmployeeDetails(Employee employee) throws NoEmployeePresentException;
+    String updateEmployeeDetails(EmployeeDTO employee) throws NoEmployeePresentException;
 
     String removeEmployeeDetails(Integer empId);
 }

@@ -30,12 +30,12 @@ import javax.validation.Valid;
 
 @RestController
 @CrossOrigin
-//@RequestMapping("/employees")
+@RequestMapping("/employees")
 @Api(value = "Employee Resource REST Endpoint", description = "Shows Employee Info")
 public class EmployeeController {
 
     @Autowired
-    private EmployeeServiceImpl employeeService;
+    private EmployeeService employeeService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -43,30 +43,30 @@ public class EmployeeController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    @PostMapping("/authenticate")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-
-        final UserDetails userDetails = employeeService.loadUserByUsername(authenticationRequest.getUsername());
-
-        final String token = jwtUtil.generateToken(userDetails);
-
-        return ResponseEntity.ok(new JwtResponse(token));
-    }
-
-    private void authenticate(String username, String password) throws Exception {
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        } catch (DisabledException e) {
-            throw new Exception("USER_DISABLED", e);
-        } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
-        }
-    }
+//    @PostMapping("/authenticate")
+//    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+//
+//        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+//
+//        final UserDetails userDetails = employeeService.loadUserByUsername(authenticationRequest.getUsername());
+//
+//        final String token = jwtUtil.generateToken(userDetails);
+//
+//        return ResponseEntity.ok(new JwtResponse(token));
+//    }
+//
+//    private void authenticate(String username, String password) throws Exception {
+//        try {
+//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+//        } catch (DisabledException e) {
+//            throw new Exception("USER_DISABLED", e);
+//        } catch (BadCredentialsException e) {
+//            throw new Exception("INVALID_CREDENTIALS", e);
+//        }
+//    }
   
-     @ApiOperation(value = "For addding new employee")
-    @PostMapping("/save")
+    @ApiOperation(value = "For addding new employee")
+    @PostMapping
     public String addEmployeeDetails( @RequestBody EmployeeDTO employee) throws EmployeeAlreadyPresentException {
         return employeeService.saveEmployeeDetails(employee);
     }
@@ -86,7 +86,7 @@ public class EmployeeController {
     
     @ApiOperation(value = "For editing employee details")
     @PutMapping
-    public String updateEmployeeDetails(@Valid @RequestBody Employee employee) throws NoEmployeePresentException {
+    public String updateEmployeeDetails(@Valid @RequestBody EmployeeDTO employee) throws NoEmployeePresentException {
         return employeeService.updateEmployeeDetails(employee);
     }
 

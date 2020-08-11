@@ -53,11 +53,13 @@ public class EmployeeServiceImpl implements EmployeeService, UserDetailsService 
         return employeeDao.findAll();
     }
 
-    @Override
-    public String updateEmployeeDetails(Employee employee) throws NoEmployeePresentException {
+	@Override
+    public String updateEmployeeDetails(EmployeeDTO employee) throws NoEmployeePresentException {
         Employee existingEmployee = employeeDao.findById(employee.getEmpId()).orElse(null);
         if(null != existingEmployee) {
             existingEmployee.setEmpName(employee.getEmpName());
+            existingEmployee.setEmail(employee.getEmail());
+            existingEmployee.setSalary(employee.getSalary());
             employeeDao.save(existingEmployee);
             return "Employee details updated successfully!";
         } else
